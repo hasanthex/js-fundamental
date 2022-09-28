@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=M+PLUS+1+Code&display=swap');
+
+.code-input{
+    background: aliceblue;
+    padding: 0px 0px 20px 20px;
+}
+
+.code-output{
+    background: mintcream;
+    padding: 0px 0px 20px 20px;
+}
+
+.fonts-output{
+    font-family: 'M PLUS 1 Code', sans-serif;
+    color: saddlebrown;
+}
+
+.fonts-input{
+    font-family: 'Fira Code', monospace;
+}
