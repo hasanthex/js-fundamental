@@ -18,3 +18,13 @@
 .fonts-input{
     font-family: 'Fira Code', monospace;
 }
+
+.btn-block{
+    width: 9rem;
+}
+
+.tag-block{
+    background: lightgreen;
+    padding: 0rem 0.3rem 0.23rem 0.3rem;   
+    border-radius: 7px;
+}
