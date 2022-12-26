@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prototype</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../asset/index.css">
+  </head>
+
+  <body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                    <tbody>
+
+                      <tr>
+                        <th scope="row" width="15%">
+                            What is Prototype
+                        </th>
+                        <td>
+                            Prototype is used to provide additional property to all objects created from a constructor function.
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <th scope="row">
+                            Advantages
+                        </th>
+                        <td>
+                            <ul>
+                                <li>
+                                    Provide data encapsulation. It was possible to emulate private methods using closures.
+                                </li>
+                                <li>
+                                    Remove code redandancy.
+                                </li>
+                                <li>
+                                    That allow to attach variables to an execution context.
+                                </li>
+                            </ul>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <th scope="row">
+                            Disadvantages
+                        </th>
+                        <td>
+                            <ul>
+                                <li>
+                                    Too many closures can slow down the application.
+                                </li>
+                                <li>
+                                    The variables declared inside a closure are not garbage collected.
+                                </li>
+                            </ul>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <th scope="row">
+                            Without Closure
+                        </th>
+                        <td>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 code-input">
+                                        <code class="fonts-input">
+                                            let sum = 0<br/>
+                                            function add(num){<br/>
+                                                &nbsp;&nbsp;sum = sum + num<br/>
+                                            }<br/>
+                                            add(1)<br/>
+                                            add(2)<br/>
+                                            console.log(sum)
+                                        </code>
+                                    </div>
+                                    <div class="col-md-6 code-output">
+                                        <code class="fonts-output">
+                                            <u>Output</u><br/>
+                                            3
+                                        </code>
+                                    </div>   
+                                </div>
+                                <br/>
+                                <p>At this point all are looks good. our code running well and give us our expected output.</p>
+                            </div>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <th scope="row"></th>
+                        <td>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 code-input">
+                                        <code class="fonts-input">
+                                            let sum = 0<br/>
+                                            function add(num){<br/>
+                                                &nbsp;&nbsp;sum = sum + num<br/>
+                                            }<br/>
+                                            add(1)<br/>
+                                            add(2)<br/>
+                                            console.log(sum)<br/><br/>
+                                            add(3)<br/>
+                                            sum = -1<br/>
+                                            console.log(sum)
+                                        </code>
+                                    </div>
+                                    <div class="col-md-6 code-output">
+                                        <code class="fonts-output">
+                                            <u>Output</u><br/>
+                                            3<br/>
+                                            -1
+                                        </code>
+                                    </div>   
+                                </div>
+                                <br/>
+                                <p>
+                                    Here is a big problem. we can change value of sum anywhere of this scope.<br/>
+                                    To overcome this kind of problem we need to use JS closures.
+                                </p>
+                            </div>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <th scope="row"> With Closure </th>
+                        <td>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 code-input">
+                                        <code class="fonts-input">
+                                            function series(){<br/>
+                                                &nbsp;&nbsp;let sum = 0<br/>
+                                                &nbsp;&nbsp;function add(num){<br/>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;return sum = sum + num<br/>
+                                                &nbsp;&nbsp;}<br/>
+                                                &nbsp;&nbsp;return add<br/>
+                                            }<br/><br/>
+                                            let value = series()<br/>
+                                            value(1)<br/>
+                                            value(2)<br/>
+                                            console.log(value(3))
+                                        </code>
+                                    </div>
+                                    <div class="col-md-6 code-output">
+                                        <code class="fonts-output">
+                                            <u>Output</u><br/>6
+                                        </code>
+                                    </div>   
+                                </div>
+                                <br/>
+                                <p>
+                                    Here all ok now. Now our variable can't effected form the outter scope.<br/>
+                                </p>
+                            </div>
+                        </td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+    
+
+  </body>
+
+
+
+  <script>
+
+               
+        // function Person(fname, lname){
+        //     let person = Object.create(Person.prototype);
+        //     person.fname = fname;
+        //     person.lname = lname
+        //     return person;
+        // }
+
+        // Person.prototype = {
+        //     fullName(){ return `${this.fname} ${this.lname}`}
+        // }
+
+        // const p1 =new  Person('Md', 'Hasan')
+
+        // console.log(p1.fullName())
+
+
+        function Person(fname, lname){
+            this.fname = fname;
+            this.lname = lname;
+        }
+
+        Person.prototype = {
+            fullName(){ return `${this.fname} ${this.lname}`},
+            firstName(){ return this.fname },
+            lastName(){ return this.lname }
+        }
+
+        const p1 = new  Person('Md', 'Hasan')
+
+        console.log(p1.fullName())
+        console.log(p1.firstName())
+        console.log(p1.lastName())
+
+
+  </script>
+
+
+
+</html>
+
+
+        
